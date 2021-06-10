@@ -1,0 +1,21 @@
+services:
+  - docker
+
+script:
+  - echo 'Tested'
+
+after_succes:
+    - docker build -t leux1/test-wprdpress .
+    - docker run -p 8080:80 leux1/test-wordpress
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: demo-licenta
+  env: Demolicenta-env
+  bucket_name: elasticbeanstalk-us-east-2-836810127342
+  bucket_path: licenta_demo
+  on:
+    branch: master
+  acces_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
