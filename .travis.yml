@@ -2,7 +2,7 @@ services:
   - docker
 
 script:
-  - echo 'Tested'
+  - echo 'test'
 
 after_succes:
     - docker build -t leux1/test-wprdpress .
